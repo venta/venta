@@ -1,0 +1,25 @@
+{
+    "name": "venta/venta",
+    "description": "Venta eCommerce Framework",
+    "authors": [
+        {
+            "name": "Konstantins Zukovs",
+            "email": "kz@scandiweb.com"
+        },
+        {
+            "name": "Raivis Vitols",
+            "email": "raivis@scandiweb.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": "modules/"
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    }
+}
