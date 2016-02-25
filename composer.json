@@ -16,7 +16,16 @@
             "": "modules/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/application.git"
+        }
+    ],
     "minimum-stability": "dev",
+    "require": {
+        "venta/application": "dev-master"
+    },
     "scripts": {
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
