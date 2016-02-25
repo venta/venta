@@ -21,11 +21,6 @@ $app = new \Venta\Application\Application(VENTA_ROOT);
 |
 */
 $app->share(
-    \Venta\Application\Interfaces\HttpKernelInterface::class,
-    \Venta\Application\Kernel\HttpKernel::class
-);
-
-$app->share(
     \Venta\Application\Interfaces\ConsoleKernelInterface::class,
     \Venta\Application\Kernel\ConsoleKernel::class
 );
