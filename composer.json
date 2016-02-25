@@ -25,12 +25,17 @@
         {
             "type": "vcs",
             "url": "https://github.com/ventacommerce/http.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/console.git"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "venta/application": "dev-master",
-        "venta/http": "dev-master"
+        "venta/http": "dev-master",
+        "venta/console": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

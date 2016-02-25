@@ -9,5 +9,6 @@
 | Extensions are loaded in the order, defined here
 */
 return [
-    \Venta\Http\HttpExtensionProvider::class
+    \Venta\Http\HttpExtensionProvider::class,
+    \Venta\Console\ConsoleExtensionProvider::class
 ];
