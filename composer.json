@@ -1,6 +1,7 @@
 {
     "name": "venta/venta",
     "description": "Venta eCommerce Framework",
+    "type": "project",
     "authors": [
         {
             "name": "Konstantins Zukovs",
@@ -32,7 +33,7 @@
         "venta/http": "dev-master"
     },
     "scripts": {
-        "post-root-package-install": [
+        "post-install-cmd": [
             "php -r \"copy('.env.example', '.env');\""
         ]
     }
