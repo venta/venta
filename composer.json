@@ -29,6 +29,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ventacommerce/console.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/container.git"
         }
     ],
     "minimum-stability": "dev",
