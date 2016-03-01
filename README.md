@@ -20,3 +20,10 @@ all — a framework designed to be customised.
 This will not be yet another eCommerce framework tagged with "next generation" or
 "best in class" labels. It'll be an experience, hard work, dedication, community
 feedback and passion mixed into one. You, developer, be the judge of outcome.
+
+## Install
+
+``` bash
+$ git clone https://github.com/ventacommerce/venta.git
+$ cd venta && composer install
+```
