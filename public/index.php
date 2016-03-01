@@ -25,7 +25,7 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
-/** @var \Venta\Application\Interfaces\ApplicationInterface $app */
+/** @var \Venta\Contracts\Application\ApplicationContract $app */
 $app = require __DIR__ . '/../bootstrap/application.php';
 
 /*
@@ -35,8 +35,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 |
 | Kernel class is used to handle application flow
 */
-/** @var \Venta\Application\Interfaces\HttpKernelInterface $kernel */
-$kernel = $app->make(\Venta\Application\Interfaces\HttpKernelInterface::class);
+/** @var \Venta\Contracts\Kernels\HttpKernelContract $kernel */
+$kernel = $app->make(\Venta\Contracts\Kernels\HttpKernelContract::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -33,13 +33,18 @@
         {
             "type": "vcs",
             "url": "https://github.com/ventacommerce/container.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/contracts.git"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "venta/application": "dev-master",
         "venta/http": "dev-master",
-        "venta/console": "dev-master"
+        "venta/console": "dev-master",
+        "venta/contracts": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
