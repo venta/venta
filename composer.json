@@ -37,6 +37,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ventacommerce/contracts.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/extensions-loader.git"
         }
     ],
     "minimum-stability": "dev",
@@ -44,7 +48,8 @@
         "venta/application": "dev-master",
         "venta/http": "dev-master",
         "venta/console": "dev-master",
-        "venta/contracts": "dev-master"
+        "venta/contracts": "dev-master",
+        "venta/extensions-loader": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
