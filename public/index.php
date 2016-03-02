@@ -35,8 +35,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 |
 | Kernel class is used to handle application flow
 */
-/** @var \Venta\Contracts\Kernels\HttpKernelContract $kernel */
-$kernel = $app->make(\Venta\Contracts\Kernels\HttpKernelContract::class);
+/** @var \Venta\Contracts\Kernel\HttpKernelContract $kernel */
+$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
 
 /*
 |--------------------------------------------------------------------------
