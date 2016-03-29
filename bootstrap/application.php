@@ -4,8 +4,19 @@
 |--------------------------------------------------------------------------
 | Creating main application class
 |--------------------------------------------------------------------------
-|
-| Place to update text
-|
 */
-return new \Venta\Application\Application(VENTA_ROOT);
+$app = new \Venta\Application\Application(VENTA_ROOT);
+
+/*
+|--------------------------------------------------------------------------
+| Setting extensions loader on application
+|--------------------------------------------------------------------------
+*/
+$app->setExtensionsLoader(new \Venta\ExtensionsLoader\Extensions\Manager);
+
+/*
+|--------------------------------------------------------------------------
+| Returning application
+|--------------------------------------------------------------------------
+*/
+return $app->boot();

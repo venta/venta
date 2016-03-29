@@ -46,7 +46,7 @@ $kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
 | This function call will make application run and handle request object
 | producing response object
 */
-$response = $kernel->handle($request = new \Venta\Http\Request);
+$response = $kernel->handle($request = \Venta\Http\Request::capture());
 
 /*
 |--------------------------------------------------------------------------
