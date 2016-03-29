@@ -12,7 +12,7 @@ $app = new \Venta\Application\Application(VENTA_ROOT);
 | Setting extensions loader on application
 |--------------------------------------------------------------------------
 */
-$app->setExtensionsLoader(new \Venta\ExtensionsLoader\Extensions\Manager);
+$app->setExtensionsLoader(new \Venta\Extensions\Manager);
 
 /*
 |--------------------------------------------------------------------------
