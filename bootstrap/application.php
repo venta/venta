@@ -12,11 +12,25 @@ $app = new \Venta\Application\Application(VENTA_ROOT);
 | Setting extensions loader on application
 |--------------------------------------------------------------------------
 */
-$app->setExtensionsLoader(new \Venta\Extensions\Manager);
+$app->setExtensionsManager(new \Venta\Extensions\Manager);
+
+/*
+|--------------------------------------------------------------------------
+| Setting container on application
+|--------------------------------------------------------------------------
+*/
+$app->setContainer(new \Venta\Container\Container);
+
+/*
+|--------------------------------------------------------------------------
+| Booting application
+|--------------------------------------------------------------------------
+*/
+$app->boot();
 
 /*
 |--------------------------------------------------------------------------
 | Returning application
 |--------------------------------------------------------------------------
 */
-return $app->boot();
+return $app;
