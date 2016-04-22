@@ -8,6 +8,4 @@
 | This file should contain only one array of extension provider classes reference.
 | Extensions are loaded in the order, defined here
 */
-return [
-    \Venta\Http\HttpExtensionProvider::class
-];
+return [];

@@ -30,23 +30,13 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 
 /*
 |--------------------------------------------------------------------------
-| Getting kernel class
-|--------------------------------------------------------------------------
-|
-| Kernel class is used to handle application flow
-*/
-/** @var \Venta\Contracts\Kernel\HttpKernelContract $kernel */
-$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
-
-/*
-|--------------------------------------------------------------------------
 | Handling request
 |--------------------------------------------------------------------------
 |
 | This function call will make application run and handle request object
 | producing response object
 */
-$response = $kernel->handle($request = \Venta\Http\Request::capture());
+$response = $app->run();
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +54,4 @@ $response->send();
 |
 | Termination is called on application here
 */
-$kernel->terminate($request, $response);
+$app->terminate();
