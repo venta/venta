@@ -1,15 +1,11 @@
 {
     "name": "venta/venta",
-    "description": "Venta eCommerce Framework",
+    "description": "Venta Framework",
     "type": "project",
     "authors": [
         {
             "name": "Konstantins Zukovs",
             "email": "kz@scandiweb.com"
-        },
-        {
-            "name": "Raivis Vitols",
-            "email": "raivis@scandiweb.com"
         }
     ],
     "autoload": {
@@ -20,41 +16,17 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/ventacommerce/application.git"
+            "url": "https://github.com/ventaframework/framework.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ventacommerce/http.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventacommerce/console.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventacommerce/container.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventacommerce/contracts.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventacommerce/extensions-loader.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventacommerce/event.git"
+            "url": "https://github.com/ventaframework/container.git"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "venta/application": "dev-master",
-        "venta/http": "dev-master",
-        "venta/console": "dev-master",
-        "venta/contracts": "dev-master",
-        "venta/event": "dev-master",
-        "venta/extensions-loader": "dev-master"
+        "venta/framework": "dev-master",
+        "zendframework/zend-diactoros": "^1.3"
     },
     "scripts": {
         "post-install-cmd": [

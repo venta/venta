@@ -1,36 +1,19 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Creating main application class
-|--------------------------------------------------------------------------
-*/
-$app = new \Venta\Application\Application(VENTA_ROOT);
+use Venta\Framework\Application;
+use Venta\Framework\Contracts\ApplicationContract;
 
 /*
 |--------------------------------------------------------------------------
-| Setting extensions loader on application
+| Creating and returning main application class
 |--------------------------------------------------------------------------
 */
-$app->setExtensionsManager(new \Venta\Extensions\Manager);
-
-/*
-|--------------------------------------------------------------------------
-| Setting container on application
-|--------------------------------------------------------------------------
-*/
-$app->setContainer(new \Venta\Container\Container);
-
-/*
-|--------------------------------------------------------------------------
-| Booting application
-|--------------------------------------------------------------------------
-*/
-$app->boot();
-
-/*
-|--------------------------------------------------------------------------
-| Returning application
-|--------------------------------------------------------------------------
-*/
-return $app;
+return new class extends Application {
+    /**
+     * {@inheritdoc}
+     */
+    public function configure()
+    {
+        $this->singleton(ApplicationContract::class, $this);
+    }
+};

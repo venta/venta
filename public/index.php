@@ -7,14 +7,13 @@
 | Here we define some constants to be used later in application
 */
 define('VENTA_START', microtime());
-define('VENTA_ROOT', dirname(__DIR__));
 
 /*
 |--------------------------------------------------------------------------
-| Requiring autoloader
+| Requiring auto loader
 |--------------------------------------------------------------------------
 |
-| Including autoloader
+| Including auto loader
 */
 require __DIR__ . '/../bootstrap/autoloader.php';
 
@@ -25,7 +24,6 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
-/** @var \Venta\Contracts\Application\ApplicationContract $app */
 $app = require __DIR__ . '/../bootstrap/application.php';
 
 /*
@@ -36,7 +34,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 | This function call will make application run and handle request object
 | producing response object
 */
-$response = $app->run();
+/** @var \Psr\Http\Message\ResponseInterface $response */
+$response = $app->run($request = \Zend\Diactoros\ServerRequestFactory::fromGlobals());
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +44,7 @@ $response = $app->run();
 |
 | Here is the place response is sent to the browser
 */
-$response->send();
+echo $response->getBody();
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +53,4 @@ $response->send();
 |
 | Termination is called on application here
 */
-$app->terminate();
+$app->terminate($request, $response);
