@@ -21,11 +21,16 @@
         {
             "type": "vcs",
             "url": "https://github.com/ventaframework/container.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventaframework/routing.git"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "venta/framework": "dev-master",
+        "ventaframework/routing": "dev-master",
         "zendframework/zend-diactoros": "^1.3"
     },
     "scripts": {
