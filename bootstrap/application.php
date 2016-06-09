@@ -1,7 +1,10 @@
 <?php
 
+use FastRoute\DataGenerator\GroupCountBased;
+use FastRoute\RouteParser\Std;
 use Venta\Framework\Application;
 use Venta\Framework\Contracts\ApplicationContract;
+use Venta\Routing\Router;
 use Venta\Routing\RoutesCollector;
 
 /*
@@ -17,9 +20,10 @@ return new class(realpath(__DIR__ . '/../')) extends Application
     public function configure()
     {
         $this->singleton(ApplicationContract::class, $this);
+        $this->singleton('app', ApplicationContract::class);
 
         $this->singleton('router', function() {
-            return \Venta\Routing\createRouter(function(RoutesCollector $collector) {
+            return (new Router($this))->collectRoutes(function(RoutesCollector $collector) {
                 $this->callExtensionProvidersMethod('routes', $collector);
             });
         });
