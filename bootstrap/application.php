@@ -3,7 +3,7 @@
 use Venta\Framework\Application;
 use Venta\Framework\Contracts\ApplicationContract;
 use Venta\Routing\Router;
-use Venta\Routing\RoutesCollector;
+use Venta\Routing\{RoutesCollector, MiddlewareCollector};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,8 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         $this->singleton('router', function() {
             return (new Router($this))->collectRoutes(function(RoutesCollector $collector) {
                 $this->callExtensionProvidersMethod('routes', $collector);
+            })->collectMiddlewares(function(MiddlewareCollector $collector){
+                $this->callExtensionProvidersMethod('middlewares', $collector);
             });
         });
 
