@@ -15,6 +15,7 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
+/** @var \Venta\Framework\Application $app */
 $app = require __DIR__ . '/../bootstrap/application.php';
 
 /*
@@ -35,7 +36,7 @@ $response = $app->run($request = \Zend\Diactoros\ServerRequestFactory::fromGloba
 |
 | Here is the place response is sent to the browser
 */
-echo $response->getBody();
+$app->emit($response);
 
 /*
 |--------------------------------------------------------------------------

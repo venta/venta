@@ -1,7 +1,5 @@
 <?php
 
-use FastRoute\DataGenerator\GroupCountBased;
-use FastRoute\RouteParser\Std;
 use Venta\Framework\Application;
 use Venta\Framework\Contracts\ApplicationContract;
 use Venta\Routing\Router;
@@ -27,5 +25,7 @@ return new class(realpath(__DIR__ . '/../')) extends Application
                 $this->callExtensionProvidersMethod('routes', $collector);
             });
         });
+
+        $this->singleton(\Zend\Diactoros\Response\EmitterInterface::class, \Zend\Diactoros\Response\SapiEmitter::class);
     }
 };
