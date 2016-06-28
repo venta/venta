@@ -8,4 +8,6 @@
 | This file should contain only one array of extension provider classes reference.
 | Extensions are loaded in the order, defined here
 */
-return [];
+return [
+    \Venta\Framework\ErrorHandlerProvider::class,
+];

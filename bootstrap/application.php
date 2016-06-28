@@ -29,5 +29,9 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         });
 
         $this->singleton(\Zend\Diactoros\Response\EmitterInterface::class, \Zend\Diactoros\Response\SapiEmitter::class);
+
+        $this->singleton(\Whoops\RunInterface::class, function() {
+            return (new \Whoops\Run(new \Whoops\Util\SystemFacade))->register();
+        });
     }
 };
