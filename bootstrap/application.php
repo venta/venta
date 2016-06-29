@@ -8,6 +8,9 @@ use Venta\Framework\Kernel\ConsoleKernel;
 use Venta\Framework\Kernel\HttpKernel;
 use Venta\Routing\Router;
 use Venta\Routing\{RoutesCollector, MiddlewareCollector};
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +24,43 @@ return new class(realpath(__DIR__ . '/../')) extends Application
      */
     public function configure()
     {
+        $this->configureErrorReporting();
+
         $this->singleton(HttpKernelContract::class, HttpKernel::class);
         $this->singleton(ConsoleKernelContract::class, ConsoleKernel::class);
 
         $this->singleton(ApplicationContract::class, $this);
         $this->singleton('app', ApplicationContract::class);
+
+        $this->configureRouting();
+    }
+
+    /**
+     * Helper function, called in order to setup error reporting
+     */
+    protected function configureErrorReporting()
+    {
+        $runner = new Run;
+        $this->singleton(\Whoops\RunInterface::class, $runner);
+        $this->singleton('errors_handler', \Whoops\RunInterface::class);
+
+        $this->callExtensionProvidersMethod('errors', $runner);
+
+        if (count($runner->getHandlers()) === 0) {
+            $handler = $this->isCli() ? new PlainTextHandler : new PrettyPageHandler;
+            $runner->pushHandler($handler);
+        }
+
+        $runner->unregister();
+        $runner->register();
+    }
+
+    /**
+     * Helper function, called to bind everything related to routing
+     */
+    protected function configureRouting()
+    {
+        $this->singleton(\Zend\Diactoros\Response\EmitterInterface::class, \Zend\Diactoros\Response\SapiEmitter::class);
 
         $this->singleton('router', function() {
             return (new Router($this, function(RoutesCollector $collector) {
@@ -33,12 +68,6 @@ return new class(realpath(__DIR__ . '/../')) extends Application
             }))->collectMiddlewares(function(MiddlewareCollector $collector){
                 $this->callExtensionProvidersMethod('middlewares', $collector);
             });
-        });
-
-        $this->singleton(\Zend\Diactoros\Response\EmitterInterface::class, \Zend\Diactoros\Response\SapiEmitter::class);
-
-        $this->singleton(\Whoops\RunInterface::class, function() {
-            return (new \Whoops\Run(new \Whoops\Util\SystemFacade))->register();
         });
     }
 };
