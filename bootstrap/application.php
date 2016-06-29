@@ -19,11 +19,6 @@ return new class(realpath(__DIR__ . '/../')) extends Application
     /**
      * {@inheritdoc}
      */
-    protected $version = 'local';
-
-    /**
-     * {@inheritdoc}
-     */
     public function configure()
     {
         $this->singleton(HttpKernelContract::class, HttpKernel::class);
