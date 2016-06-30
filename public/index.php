@@ -45,7 +45,7 @@ $response = $kernel->handle($request = \Zend\Diactoros\ServerRequestFactory::fro
 |
 | Here is the place response is sent to the browser
 */
-$app->emit($response);
+$kernel->emit($response);
 
 /*
 |--------------------------------------------------------------------------

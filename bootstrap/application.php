@@ -60,8 +60,6 @@ return new class(realpath(__DIR__ . '/../')) extends Application
      */
     protected function configureRouting()
     {
-        $this->singleton(\Zend\Diactoros\Response\EmitterInterface::class, \Zend\Diactoros\Response\SapiEmitter::class);
-
         $this->singleton('router', function() {
             return (new Router($this, function(RoutesCollector $collector) {
                 $this->callExtensionProvidersMethod('routes', $collector);
