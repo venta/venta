@@ -32,6 +32,7 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         $this->singleton(ApplicationContract::class, $this);
         $this->singleton('app', ApplicationContract::class);
 
+        $this->configureLogging();
         $this->configureRouting();
     }
 
@@ -69,4 +70,33 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         });
         $this->singleton('router', \Venta\Routing\Contract\RouterContract::class);
     }
+
+    /**
+     * Helper function, called to to bind PSR-3 Logger
+     */
+    protected function configureLogging()
+    {
+        /** @var $this Application */
+        $this->singleton(Monolog\Logger::class, function(){
+            $logger = new \Monolog\Logger('venta');
+            $handler = new \Monolog\Handler\StreamHandler(__DIR__ . '/../storage/logs/app.log');
+            $handler->pushProcessor(function($record){
+                /** @var \Psr\Http\Message\ServerRequestInterface $request */
+                $request = $this->get(\Psr\Http\Message\RequestInterface::class);
+                $server = $request->getServerParams();
+                $record['extra']['url'] =  $request->getUri()->getPath();
+                $record['extra']['http_method'] = $request->getMethod();
+                $record['extra']['host'] = $request->getUri()->getHost();
+                $record['extra']['referer'] = $request->getHeader('referer');
+                $record['extra']['user_agent'] = $request->getHeader('user-agent');
+                $record['extra']['ip'] = $server['REMOTE_ADDR'] ?? null;
+                return $record;
+            });
+            $handler->setFormatter(new \Monolog\Formatter\LineFormatter());
+            $logger->pushHandler($handler);
+            return $logger;
+        });
+        $this->singleton(\Psr\Log\LoggerInterface::class, \Monolog\Logger::class);
+    }
+
 };
