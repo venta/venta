@@ -36,7 +36,7 @@ $request =
     new \Venta\Framework\Http\Request($server, \Zend\Diactoros\ServerRequestFactory::normalizeFiles($_FILES),
         \Zend\Diactoros\ServerRequestFactory::marshalUriFromServer($server, $headers),
         \Zend\Diactoros\ServerRequestFactory::get('REQUEST_METHOD', $server, 'GET'), 'php://input', $headers, $_COOKIE,
-        $_GET, $_POST// todo add protocol marshalling
+        $_GET, $_POST// todo add protocol marshalling via ServerRequestFactory::marshalProtocolVersion($server)
     );
 /*
 |--------------------------------------------------------------------------
