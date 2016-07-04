@@ -4,10 +4,13 @@ use Venta\Framework\Application;
 use Venta\Framework\Contracts\ApplicationContract;
 use Venta\Framework\Contracts\Kernel\ConsoleKernelContract;
 use Venta\Framework\Contracts\Kernel\HttpKernelContract;
+use Venta\Framework\Http\Factory\ResponseFactory;
 use Venta\Framework\Kernel\ConsoleKernel;
 use Venta\Framework\Kernel\HttpKernel;
+use Venta\Routing\{
+    MiddlewareCollector, RoutesCollector
+};
 use Venta\Routing\Router;
-use Venta\Routing\{RoutesCollector, MiddlewareCollector};
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -31,6 +34,11 @@ return new class(realpath(__DIR__ . '/../')) extends Application
 
         $this->singleton(ApplicationContract::class, $this);
         $this->singleton('app', ApplicationContract::class);
+
+        // Binding Request & Response interfaces and implementations
+        // If you want to use your own classes, it's the right place to define them
+        $this->singleton(\Psr\Http\Message\RequestInterface::class, \Venta\Framework\Http\Request::class);
+        $this->singleton(ResponseFactory::class, new ResponseFactory(\Venta\Framework\Http\Response::class));
 
         $this->configureLogging();
         $this->configureRouting();

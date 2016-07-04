@@ -28,22 +28,16 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 /** @var \Venta\Framework\Contracts\Kernel\HttpKernelContract $kernel */
 $kernel = $app->make(\Venta\Framework\Contracts\Kernel\HttpKernelContract::class);
 
-// todo Move to kernel?
-// todo Overwrite with Venta factory ?
-$server  = \Zend\Diactoros\ServerRequestFactory::normalizeServer($_SERVER);
-$headers = \Zend\Diactoros\ServerRequestFactory::marshalHeaders($server);
-$request = new \Venta\Framework\Http\Request(
-    $server,
-    \Zend\Diactoros\ServerRequestFactory::normalizeFiles($_FILES),
-    \Zend\Diactoros\ServerRequestFactory::marshalUriFromServer($server, $headers),
-    \Zend\Diactoros\ServerRequestFactory::get('REQUEST_METHOD', $server, 'GET'),
-    'php://input',
-    $headers,
-    $_COOKIE,
-    $_GET,
-    $_POST
-    // todo add protocol marshalling via ServerRequestFactory::marshalProtocolVersion($server)
-);
+/*
+|--------------------------------------------------------------------------
+| Creating request instance
+|--------------------------------------------------------------------------
+|
+| Request is made by factory using implementation
+| binded to \Psr\Http\Message\RequestInterface in Application::configure()
+*/
+$request = \Venta\Framework\Http\Factory\RequestFactory::makeFromGlobals($app);
+
 /*
 |--------------------------------------------------------------------------
 | Handling request
