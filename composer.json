@@ -37,6 +37,9 @@
         "ventaframework/routing": "dev-master",
         "ventaframework/http": "dev-master"
     },
+    "require-dev":{
+        "phpunit/phpunit":"^5.4"
+    },
     "scripts": {
         "post-install-cmd": [
             "php -r \"copy('.env.example', '.env');\""
