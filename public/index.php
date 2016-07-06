@@ -64,4 +64,4 @@ $kernel->emit($response);
 |
 | Termination is called on application here
 */
-$kernel->terminate($request, $response);
+$kernel->terminate();
