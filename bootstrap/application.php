@@ -37,8 +37,8 @@ return new class(realpath(__DIR__ . '/../')) extends Application
 
         // Binding Request & Response interfaces and implementations
         // If you want to use your own classes, it's the right place to define them
-        $this->singleton(\Psr\Http\Message\RequestInterface::class, \Venta\Framework\Http\Request::class);
-        $this->singleton(ResponseFactory::class, new ResponseFactory(\Venta\Framework\Http\Response::class));
+        $this->singleton(\Psr\Http\Message\RequestInterface::class, \Venta\Http\Request::class);
+        $this->singleton(ResponseFactory::class, new ResponseFactory(\Venta\Http\Response::class));
 
         $this->configureLogging();
         $this->configureRouting();
