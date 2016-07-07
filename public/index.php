@@ -34,9 +34,9 @@ $kernel = $app->make(\Venta\Framework\Contracts\Kernel\HttpKernelContract::class
 |--------------------------------------------------------------------------
 |
 | Request is made by factory using implementation
-| bound to \Psr\Http\Message\RequestInterface in Application::configure()
+| bound to \Venta\Http\Contract\RequestContract in Application::configure()
 */
-$request = \Venta\Framework\Http\Factory\RequestFactory::makeFromGlobals($app);
+$request = $app->make(\Venta\Http\Contract\RequestContract::class, \Venta\Http\Factory\RequestFactory::marshalGlobals());
 
 /*
 |--------------------------------------------------------------------------

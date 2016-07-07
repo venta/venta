@@ -4,9 +4,9 @@ use Venta\Framework\Application;
 use Venta\Framework\Contracts\ApplicationContract;
 use Venta\Framework\Contracts\Kernel\ConsoleKernelContract;
 use Venta\Framework\Contracts\Kernel\HttpKernelContract;
-use Venta\Framework\Http\Factory\ResponseFactory;
 use Venta\Framework\Kernel\ConsoleKernel;
 use Venta\Framework\Kernel\HttpKernel;
+use Venta\Http\Factory\ResponseFactory;
 use Venta\Routing\{
     MiddlewareCollector, RoutesCollector
 };
@@ -37,7 +37,7 @@ return new class(realpath(__DIR__ . '/../')) extends Application
 
         // Binding Request & Response interfaces and implementations
         // If you want to use your own classes, it's the right place to define them
-        $this->singleton(\Psr\Http\Message\RequestInterface::class, \Venta\Http\Request::class);
+        $this->singleton(\Venta\Http\Contract\RequestContract::class, \Venta\Http\Request::class);
         $this->singleton(ResponseFactory::class, new ResponseFactory(\Venta\Http\Response::class));
 
         $this->configureLogging();
