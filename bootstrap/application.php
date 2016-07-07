@@ -51,17 +51,9 @@ return new class(realpath(__DIR__ . '/../')) extends Application
     {
         $runner = new Run;
         $this->singleton(\Whoops\RunInterface::class, $runner);
-        $this->singleton('errors_handler', \Whoops\RunInterface::class);
+        $this->singleton('error_handler', \Whoops\RunInterface::class);
 
-        $this->callExtensionProvidersMethod('errors', $runner);
-
-        if (count($runner->getHandlers()) === 0) {
-            $handler = $this->isCli() ? new PlainTextHandler : new PrettyPageHandler;
-            $runner->pushHandler($handler);
-        }
-
-        $runner->unregister();
-        $runner->register();
+        $runner->pushHandler($this->isCli() ? new PlainTextHandler : new PrettyPageHandler)->register();
     }
 
     /**
