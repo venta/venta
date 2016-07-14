@@ -17,6 +17,22 @@
         {
             "type": "vcs",
             "url": "https://github.com/venta/framework.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventaframework/container.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventaframework/http.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventaframework/routing.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventaframework/console.git"
         }
     ],
     "minimum-stability": "dev",
