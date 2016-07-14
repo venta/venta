@@ -9,5 +9,5 @@
 | Extensions are loaded in the order, defined here
 */
 return [
-    \Venta\Framework\ErrorHandler\ErrorHandlerProvider::class,
+    \Venta\ErrorHandler\ErrorHandlerProvider::class,
 ];
