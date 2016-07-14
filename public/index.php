@@ -15,7 +15,7 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
-/** @var \Venta\Framework\Application $app */
+/** @var \Venta\Application $app */
 $app = require __DIR__ . '/../bootstrap/application.php';
 
 /*
@@ -25,8 +25,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 |
 | Kernel will handle application execution process
 */
-/** @var \Venta\Framework\Contracts\Kernel\HttpKernelContract $kernel */
-$kernel = $app->make(\Venta\Framework\Contracts\Kernel\HttpKernelContract::class);
+/** @var \Venta\Contracts\Kernel\HttpKernelContract $kernel */
+$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +34,9 @@ $kernel = $app->make(\Venta\Framework\Contracts\Kernel\HttpKernelContract::class
 |--------------------------------------------------------------------------
 |
 | Request is made by factory using implementation
-| bound to \Venta\Http\Contract\RequestContract in Application::configure()
+| bound to \Abava\Http\Contract\RequestContract in Application::configure()
 */
-$request = $app->make(\Venta\Http\Contract\RequestContract::class, \Venta\Http\Factory\RequestFactory::marshalGlobals());
+$request = $app->make(\Abava\Http\Contract\RequestContract::class, \Abava\Http\Factory\RequestFactory::marshalGlobals());
 
 /*
 |--------------------------------------------------------------------------

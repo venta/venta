@@ -1,16 +1,16 @@
 <?php
 
-use Venta\Framework\Application;
-use Venta\Framework\Contracts\ApplicationContract;
-use Venta\Framework\Contracts\Kernel\ConsoleKernelContract;
-use Venta\Framework\Contracts\Kernel\HttpKernelContract;
-use Venta\Framework\Kernel\ConsoleKernel;
-use Venta\Framework\Kernel\HttpKernel;
-use Venta\Http\Factory\ResponseFactory;
-use Venta\Routing\{
+use Abava\Http\Factory\ResponseFactory;
+use Abava\Routing\{
     MiddlewareCollector, RoutesCollector
 };
-use Venta\Routing\Router;
+use Abava\Routing\Router;
+use Venta\Application;
+use Venta\Contracts\ApplicationContract;
+use Venta\Contracts\Kernel\ConsoleKernelContract;
+use Venta\Contracts\Kernel\HttpKernelContract;
+use Venta\Kernel\ConsoleKernel;
+use Venta\Kernel\HttpKernel;
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -37,8 +37,8 @@ return new class(realpath(__DIR__ . '/../')) extends Application
 
         // Binding Request & Response interfaces and implementations
         // If you want to use your own classes, it's the right place to define them
-        $this->singleton(\Venta\Http\Contract\RequestContract::class, \Venta\Http\Request::class);
-        $this->singleton(ResponseFactory::class, new ResponseFactory(\Venta\Http\Response::class));
+        $this->singleton(\Abava\Http\Contract\RequestContract::class, \Abava\Http\Request::class);
+        $this->singleton(ResponseFactory::class, new ResponseFactory(\Abava\Http\Response::class));
 
         $this->configureLogging();
         $this->configureRouting();
@@ -61,14 +61,14 @@ return new class(realpath(__DIR__ . '/../')) extends Application
      */
     protected function configureRouting()
     {
-        $this->singleton(\Venta\Routing\Contract\RouterContract::class, function () {
+        $this->singleton(\Abava\Routing\Contract\RouterContract::class, function () {
             return (new Router($this, new MiddlewareCollector(), function (RoutesCollector $collector) {
                 $this->callExtensionProvidersMethod('routes', $collector);
             }))->collectMiddlewares(function(MiddlewareCollector $collector){
                 $this->callExtensionProvidersMethod('middlewares', $collector);
             });
         });
-        $this->singleton('router', \Venta\Routing\Contract\RouterContract::class);
+        $this->singleton('router', \Abava\Routing\Contract\RouterContract::class);
     }
 
     /**

@@ -20,19 +20,19 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ventaframework/container.git"
+            "url": "https://github.com/abava/container.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ventaframework/http.git"
+            "url": "https://github.com/abava/http.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ventaframework/routing.git"
+            "url": "https://github.com/abava/routing.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/ventaframework/console.git"
+            "url": "https://github.com/abava/console.git"
         }
     ],
     "minimum-stability": "dev",
