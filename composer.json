@@ -16,26 +16,12 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/ventaframework/framework.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventaframework/container.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventaframework/routing.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ventaframework/console.git"
+            "url": "https://github.com/venta/framework.git"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "venta/framework": "dev-master",
-        "ventaframework/routing": "dev-master",
-        "ventaframework/console": "dev-master"
+        "venta/framework": "dev-master"
     },
     "require-dev":{
         "phpunit/phpunit":"^5.4"
