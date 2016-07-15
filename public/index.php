@@ -25,8 +25,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 |
 | Kernel will handle application execution process
 */
-/** @var \Venta\Contracts\Kernel\HttpKernelContract $kernel */
-$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
+/** @var \Venta\Contracts\Kernel\HttpKernel $kernel */
+$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernel::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ $kernel = $app->make(\Venta\Contracts\Kernel\HttpKernelContract::class);
 | Request is made by factory using implementation
 | bound to \Abava\Http\Contract\RequestContract in Application::configure()
 */
-$request = $app->make(\Abava\Http\Contract\RequestContract::class, \Abava\Http\Factory\RequestFactory::marshalGlobals());
+$request = $app->make(\Abava\Http\Contract\Request::class);
 
 /*
 |--------------------------------------------------------------------------
