@@ -16,6 +16,7 @@ require __DIR__ . '/bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
+/** @var \Venta\Contracts\ApplicationContract $app */
 $app = require __DIR__ . '/bootstrap/application.php';
 
 /*
@@ -25,8 +26,20 @@ $app = require __DIR__ . '/bootstrap/application.php';
 |
 | Kernel will handle application execution process
 */
-/** @var \Venta\Framework\Contracts\Kernel\ConsoleKernelContract $kernel */
-$kernel = $app->make(\Venta\Framework\Contracts\Kernel\ConsoleKernelContract::class);
+/** @var \Venta\Contracts\Kernel\ConsoleKernelContract $kernel */
+$kernel = $app->make(
+    \Venta\Contracts\Kernel\ConsoleKernelContract::class,
+    ['name'=>'Venta Console Application', 'version'=>$app->version()]
+);
+
+/*
+|--------------------------------------------------------------------------
+| Passing Apllication
+|--------------------------------------------------------------------------
+|
+| Passing application instance to console kernel
+*/
+$kernel->setApplication($app);
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +49,10 @@ $kernel = $app->make(\Venta\Framework\Contracts\Kernel\ConsoleKernelContract::cl
 | This function call will make application run and handle request object
 | producing response object
 */
-$status = $kernel->handle();
+$status = $kernel->handle(
+    new \Symfony\Component\Console\Input\ArgvInput(),
+    new \Symfony\Component\Console\Output\ConsoleOutput()
+);
 
 /*
 |--------------------------------------------------------------------------
