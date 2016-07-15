@@ -16,7 +16,7 @@ require __DIR__ . '/bootstrap/autoloader.php';
 |
 | Including application class initialisation
 */
-/** @var \Venta\Contracts\ApplicationContract $app */
+/** @var \Venta\Contracts\Application $app */
 $app = require __DIR__ . '/bootstrap/application.php';
 
 /*
@@ -26,9 +26,9 @@ $app = require __DIR__ . '/bootstrap/application.php';
 |
 | Kernel will handle application execution process
 */
-/** @var \Venta\Contracts\Kernel\ConsoleKernelContract $kernel */
+/** @var \Venta\Contracts\Kernel\ConsoleKernel $kernel */
 $kernel = $app->make(
-    \Venta\Contracts\Kernel\ConsoleKernelContract::class,
+    \Venta\Contracts\Kernel\ConsoleKernel::class,
     ['name'=>'Venta Console Application', 'version'=>$app->version()]
 );
 
