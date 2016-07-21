@@ -1,10 +1,6 @@
 <?php
 
 use Abava\Http\Factory\ResponseFactory;
-use Abava\Routing\{
-    MiddlewareCollector, RoutesCollector
-};
-use Abava\Routing\Router;
 use Venta\Application;
 use Venta\Contracts\Application as ApplicationContract;
 use Venta\Contracts\Kernel\ConsoleKernel as ConsoleKernelContract;
@@ -23,6 +19,8 @@ use Whoops\Run;
 return new class(realpath(__DIR__ . '/../')) extends Application
 {
     /**
+     * This method is called in both cli and http mods
+     *
      * {@inheritdoc}
      */
     public function configure()
@@ -41,7 +39,6 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         $this->singleton(ResponseFactory::class, $this->createResponseFactory());
 
         $this->configureLogging();
-        $this->configureRouting();
     }
 
     /**
@@ -54,21 +51,6 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         $this->singleton('error_handler', \Whoops\RunInterface::class);
 
         $runner->pushHandler($this->isCli() ? new PlainTextHandler : new PrettyPageHandler)->register();
-    }
-
-    /**
-     * Helper function, called to bind everything related to routing
-     */
-    protected function configureRouting()
-    {
-        $this->singleton(\Abava\Routing\Contract\Router::class, function () {
-            return (new Router($this, new MiddlewareCollector(), function (RoutesCollector $collector) {
-                $this->callExtensionProvidersMethod('routes', $collector);
-            }))->collectMiddlewares(function (MiddlewareCollector $collector) {
-                $this->callExtensionProvidersMethod('middlewares', $collector);
-            });
-        });
-        $this->singleton('router', \Abava\Routing\Contract\Router::class);
     }
 
     /**
