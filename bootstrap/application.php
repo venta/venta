@@ -3,6 +3,8 @@
 use Abava\Container\Contract\Caller;
 use Abava\Container\Contract\Container;
 use Abava\Http\Factory\ResponseFactory;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Venta\Application;
 use Venta\Contract\Application as ApplicationContract;
 use Venta\Contract\Kernel\ConsoleKernel as ConsoleKernelContract;
@@ -41,6 +43,9 @@ return new class(realpath(__DIR__ . '/../')) extends Application
         // If you want to use your own classes, it's the right place to define them
         $this->singleton(\Abava\Http\Contract\Request::class, $this->createServerRequest());
         $this->singleton(ResponseFactory::class, $this->createResponseFactory());
+
+        $this->singleton(InputInterface::class, $this->createConsoleInput());
+        $this->singleton(OutputInterface::class, $this->createConsoleOutput());
 
         $this->configureLogging();
         $this->bindRouting();

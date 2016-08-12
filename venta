@@ -50,8 +50,8 @@ $kernel->setApplication($app);
 | producing response object
 */
 $status = $kernel->handle(
-    new \Symfony\Component\Console\Input\ArgvInput(),
-    new \Symfony\Component\Console\Output\ConsoleOutput()
+    $app->make(\Symfony\Component\Console\Input\InputInterface::class),
+    $app->make(\Symfony\Component\Console\Output\OutputInterface::class)
 );
 
 /*
