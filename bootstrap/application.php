@@ -57,9 +57,10 @@ return new class(realpath(__DIR__ . '/../')) extends Application
 
         if ($this->isCli()) {
             // Console kernel will render exception
-            $runner->allowQuit(false);
+            $runner->allowQuit(true);
             $runner->sendHttpCode(false);
-            $runner->writeToOutput(false);
+            $runner->writeToOutput(true);
+            $runner->pushHandler(new PlainTextHandler());
         } else {
             // Enable pretty error page for local environment only
             $runner->pushHandler($this->isLocalEnvironment() ? new PrettyPageHandler : new PlainTextHandler);
