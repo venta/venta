@@ -25,8 +25,8 @@ $app = require __DIR__ . '/../bootstrap/application.php';
 |
 | Kernel will handle application execution process
 */
-/** @var \Venta\Contracts\Kernel\HttpKernel $kernel */
-$kernel = $app->make(\Venta\Contracts\Kernel\HttpKernel::class);
+/** @var \Venta\Contract\Kernel\HttpKernel $kernel */
+$kernel = $app->make(\Venta\Contract\Kernel\HttpKernel::class);
 
 /*
 |--------------------------------------------------------------------------
