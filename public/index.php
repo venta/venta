@@ -10,58 +10,28 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 
 /*
 |--------------------------------------------------------------------------
-| Requiring main application class
+| Requiring kernel
 |--------------------------------------------------------------------------
 |
-| Including application class initialisation
+| Includes kernel class initialisation
 */
-/** @var \Venta\Application $app */
-$app = require __DIR__ . '/../bootstrap/application.php';
+/** @var \Venta\Contract\Kernel $kernel */
+$kernel = require __DIR__ . '/../bootstrap/kernel.php';
 
 /*
 |--------------------------------------------------------------------------
-| Resolving kernel out of container
+| Creating HTTP Application
 |--------------------------------------------------------------------------
 |
-| Kernel will handle application execution process
+| Initializes application and boots kernel
 */
-/** @var \Venta\Contract\Kernel\HttpKernel $kernel */
-$kernel = $app->make(\Venta\Contract\Kernel\HttpKernel::class);
+$app = new \Venta\Application\HttpApplication($kernel);
 
 /*
 |--------------------------------------------------------------------------
-| Creating request instance
+| Running Application
 |--------------------------------------------------------------------------
 |
-| Request is made by factory using implementation
-| bound to \Abava\Http\Contract\RequestContract in Application::configure()
+| Application handles HTTP request, creates and emits HTTP response
 */
-$request = $app->make(\Abava\Http\Contract\Request::class);
-
-/*
-|--------------------------------------------------------------------------
-| Handling request
-|--------------------------------------------------------------------------
-|
-| This function call will make application run and handle request object
-| producing response object
-*/
-$response = $kernel->handle($request);
-
-/*
-|--------------------------------------------------------------------------
-| Output of response
-|--------------------------------------------------------------------------
-|
-| Here is the place response is sent to the browser
-*/
-$kernel->emit($response);
-
-/*
-|--------------------------------------------------------------------------
-| Terminate our application
-|--------------------------------------------------------------------------
-|
-| Termination is called on application here
-*/
-$kernel->terminate();
+$app->run();

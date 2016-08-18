@@ -9,5 +9,6 @@
 | Extensions are loaded in the order, defined here
 */
 return [
+    \Venta\Extension\VentaExtensionProvider::class,
     \Venta\ErrorHandler\ErrorHandlerProvider::class,
 ];

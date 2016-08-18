@@ -11,63 +11,28 @@ require __DIR__ . '/bootstrap/autoloader.php';
 
 /*
 |--------------------------------------------------------------------------
-| Requiring main application class
+| Requiring kernel
 |--------------------------------------------------------------------------
 |
-| Including application class initialisation
+| Includes kernel class initialisation
 */
-/** @var \Venta\Contract\Application $app */
-$app = require __DIR__ . '/bootstrap/application.php';
+/** @var \Venta\Contract\Kernel $kernel */
+$kernel = require __DIR__ . '/bootstrap/kernel.php';
 
 /*
 |--------------------------------------------------------------------------
-| Resolving kernel out of container
+| Creating cli Application
 |--------------------------------------------------------------------------
 |
-| Kernel will handle application execution process
+| Initializes application and boots kernel
 */
-/** @var \Venta\Contract\Kernel\ConsoleKernel $kernel */
-$kernel = $app->make(
-    \Venta\Contract\Kernel\ConsoleKernel::class,
-    ['name'=>'Venta Console Application', 'version'=>$app->version()]
-);
+$app = new \Venta\Application\ConsoleApplication($kernel);
 
 /*
 |--------------------------------------------------------------------------
-| Passing Apllication
+| Running Application
 |--------------------------------------------------------------------------
 |
-| Passing application instance to console kernel
+| Application processes Input and passes results to Output
 */
-$kernel->setApplication($app);
-
-/*
-|--------------------------------------------------------------------------
-| Handling request
-|--------------------------------------------------------------------------
-|
-| This function call will make application run and handle request object
-| producing response object
-*/
-$status = $kernel->handle(
-    $app->make(\Symfony\Component\Console\Input\InputInterface::class),
-    $app->make(\Symfony\Component\Console\Output\OutputInterface::class)
-);
-
-/*
-|--------------------------------------------------------------------------
-| Terminate our application
-|--------------------------------------------------------------------------
-|
-| Termination is called on application here
-*/
-$kernel->terminate();
-
-/*
-|--------------------------------------------------------------------------
-| Output of response
-|--------------------------------------------------------------------------
-|
-| Since it is console application, we are exiting with result status
-*/
-exit($status);
+$app->run();
