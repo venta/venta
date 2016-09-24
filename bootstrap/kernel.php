@@ -1,41 +1,42 @@
 <?php
 
-use Abava\Container\Contract\Container as ContainerContract;
-use Abava\Http\Contract\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Venta\Kernel;
+use Venta\Contracts\Container\Container;
+use Venta\Contracts\Http\Request;
+use Venta\Framework\Kernel;
+use Venta\Http\Factory\RequestFactory;
 
 /*
 |--------------------------------------------------------------------------
 | Creating and returning main application class
 |--------------------------------------------------------------------------
 */
-return new class(new \Abava\Container\Container(), realpath(__DIR__ . '/../')) extends Kernel
+return new class(new \Venta\Container\Container(), realpath(__DIR__ . '/../')) extends Kernel
 {
     /**
      * @inheritDoc
      */
-    public function boot(): ContainerContract
+    public function boot(): Container
     {
         /** @var Kernel $this */
         /*
          * Binding Abava/Http request implementation to PSR-6 interface
          */
         $this->container->share(ServerRequestInterface::class, function () {
-            return (new \Abava\Http\Factory\RequestFactory())->createServerRequestFromGlobals();
+            return (new RequestFactory())->createServerRequestFromGlobals();
         }, ['request', RequestInterface::class, Request::class]);
 
         /*
          * Binding Response factory contract to Abava implementation
          */
         $this->container->share(
-            \Abava\Http\Contract\ResponseFactory::class,
-            \Abava\Http\Factory\ResponseFactory::class
+            Venta\Contracts\Http\ResponseFactory::class,
+            Venta\Http\Factory\ResponseFactory::class
         );
 
         /**

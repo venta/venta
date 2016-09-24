@@ -15,7 +15,7 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 |
 | Includes kernel class initialisation
 */
-/** @var \Venta\Contract\Kernel $kernel */
+/** @var \Venta\Contracts\Kernel $kernel */
 $kernel = require __DIR__ . '/../bootstrap/kernel.php';
 
 /*
@@ -25,7 +25,7 @@ $kernel = require __DIR__ . '/../bootstrap/kernel.php';
 |
 | Initializes application and boots kernel
 */
-$app = new \Venta\Application\HttpApplication($kernel);
+$app = new \Venta\Http\HttpApplication($kernel);
 
 /*
 |--------------------------------------------------------------------------
