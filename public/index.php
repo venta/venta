@@ -1,37 +1,16 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Requiring auto loader
-|--------------------------------------------------------------------------
-|
-| Including auto loader
-*/
+
+use App\Kernel;
+use Psr\Http\Message\ServerRequestInterface;
+use Venta\Http\Factory\RequestFactory;
+use Venta\Http\HttpApplication;
+
 require __DIR__ . '/../bootstrap/autoloader.php';
 
-/*
-|--------------------------------------------------------------------------
-| Requiring kernel
-|--------------------------------------------------------------------------
-|
-| Includes kernel class initialisation
-*/
-/** @var \Venta\Contracts\Kernel $kernel */
-$kernel = require __DIR__ . '/../bootstrap/kernel.php';
+/** @var HttpApplication $app */
+$app = new HttpApplication(new Kernel());
 
-/*
-|--------------------------------------------------------------------------
-| Creating HTTP Application
-|--------------------------------------------------------------------------
-|
-| Initializes application and boots kernel
-*/
-$app = new \Venta\Http\HttpApplication($kernel);
+/** @var ServerRequestInterface $request */
+$request = (new RequestFactory())->createServerRequestFromGlobals();
 
-/*
-|--------------------------------------------------------------------------
-| Running Application
-|--------------------------------------------------------------------------
-|
-| Application handles HTTP request, creates and emits HTTP response
-*/
-$app->run();
+$app->run($request);
