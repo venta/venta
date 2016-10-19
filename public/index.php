@@ -2,12 +2,12 @@
 
 use App\Kernel;
 use Psr\Http\Message\ServerRequestInterface;
+use Venta\Framework\Http\HttpApplication;
 use Venta\Http\Factory\RequestFactory;
-use Venta\Http\HttpApplication;
 
 require __DIR__ . '/../bootstrap/autoloader.php';
 
-/** @var HttpApplication $app */
+/** @var \Venta\Framework\Http\HttpApplication $app */
 $app = new HttpApplication(new Kernel());
 
 /** @var ServerRequestInterface $request */
