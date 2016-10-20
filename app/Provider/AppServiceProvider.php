@@ -3,8 +3,8 @@
 namespace App\Provider;
 
 use App\Action\HomeAction;
-use Venta\Contracts\Routing\RouteCollector;
-use Venta\Routing\RouteBuilder;
+use Venta\Contracts\Routing\RouteCollection;
+use Venta\Routing\Route;
 use Venta\ServiceProvider\AbstractServiceProvider;
 
 /**
@@ -19,7 +19,8 @@ class AppServiceProvider extends AbstractServiceProvider
      */
     public function boot()
     {
-        $routes = $this->container->get(RouteCollector::class);
-        $routes->add(RouteBuilder::get('/', HomeAction::class)->build());
+        /** @var RouteCollection $routes */
+        $routes = $this->container->get(RouteCollection::class);
+        $routes->addRoute(Route::get('/', HomeAction::class));
     }
 }

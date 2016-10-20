@@ -2,6 +2,8 @@
 
 namespace App\Action;
 
+use Venta\Contracts\Http\ResponseFactory;
+
 /**
  * Class HomeAction
  *
@@ -9,11 +11,27 @@ namespace App\Action;
  */
 class HomeAction
 {
+
+    /**
+     * @var ResponseFactory
+     */
+    private $responseFactory;
+
+    /**
+     * HomeAction constructor.
+     *
+     * @param ResponseFactory $responseFactory
+     */
+    public function __construct(ResponseFactory $responseFactory)
+    {
+        $this->responseFactory = $responseFactory;
+    }
+
     /**
      * @return string
      */
     public function __invoke()
     {
-        return 'Hi there. I\'m Venta';
+        return $this->responseFactory->createResponse()->append('Hi there. I\'m Venta');
     }
 }
