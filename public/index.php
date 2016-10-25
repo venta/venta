@@ -8,9 +8,9 @@ use Venta\Http\Factory\RequestFactory;
 require __DIR__ . '/../bootstrap/autoloader.php';
 
 /** @var \Venta\Framework\Http\HttpApplication $app */
-$app = new HttpApplication(new Kernel());
+$app = new HttpApplication(new Kernel);
 
 /** @var ServerRequestInterface $request */
-$request = (new RequestFactory())->createServerRequestFromGlobals();
+$request = (new RequestFactory)->createServerRequestFromGlobals();
 
 $app->run($request);

@@ -2,14 +2,18 @@
 
 namespace App;
 
-use Venta\Framework\Kernel\Kernel as FrameworkKernel;
+use App\Provider\AppServiceProvider;
+use Venta\Framework\Kernel\AbstractKernel;
+use Venta\Framework\ServiceProvider\ConsoleServiceProvider;
+use Venta\Framework\ServiceProvider\HttpServiceProvider;
+use Venta\Framework\ServiceProvider\RoutingServiceProvider;
 
 /**
  * Class Kernel
  *
  * @package App
  */
-class Kernel extends FrameworkKernel
+class Kernel extends AbstractKernel
 {
     /**
      * @inheritDoc
@@ -18,5 +22,20 @@ class Kernel extends FrameworkKernel
     {
         return realpath(__DIR__ . '/../');
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function registerServiceProviders(): array
+    {
+        return [
+            HttpServiceProvider::class,
+            RoutingServiceProvider::class,
+            ConsoleServiceProvider::class,
+
+            AppServiceProvider::class,
+        ];
+    }
+
 
 }
