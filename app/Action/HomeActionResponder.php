@@ -2,6 +2,10 @@
 
 namespace App\Action;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Venta\Contracts\Adr\Payload;
+use Venta\Contracts\Adr\Responder;
 use Venta\Contracts\Http\ResponseFactory;
 
 /**
@@ -9,9 +13,8 @@ use Venta\Contracts\Http\ResponseFactory;
  *
  * @package App\Controller
  */
-class HomeAction
+class HomeActionResponder implements Responder
 {
-
     /**
      * @var ResponseFactory
      */
@@ -28,9 +31,9 @@ class HomeAction
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function __invoke()
+    public function run(ServerRequestInterface $request, Payload $payload = null): ResponseInterface
     {
         return $this->responseFactory->createResponse()->append('Hi there. I\'m Venta');
     }
