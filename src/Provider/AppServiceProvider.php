@@ -2,7 +2,7 @@
 
 namespace App\Provider;
 
-use App\Action\HomeActionResponder;
+use App\Responder\HomeResponder;
 use Venta\Contracts\Routing\RouteCollection;
 use Venta\Routing\Route;
 use Venta\ServiceProvider\AbstractServiceProvider;
@@ -21,6 +21,6 @@ class AppServiceProvider extends AbstractServiceProvider
     {
         /** @var RouteCollection $routes */
         $routes = $this->container->get(RouteCollection::class);
-        $routes->addRoute(Route::get('/', HomeActionResponder::class));
+        $routes->addRoute(Route::get('/', HomeResponder::class));
     }
 }

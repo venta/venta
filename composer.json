@@ -10,11 +10,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "": "modules/"
-        },
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "src/"
         }
     },
     "minimum-stability": "dev",

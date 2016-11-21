@@ -30,14 +30,15 @@ class Kernel extends AbstractKernel
     protected function registerServiceProviders(): array
     {
         return [
+            // Framework Providers
             HttpServiceProvider::class,
             RoutingServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
 
+            // Application Providers
             AppServiceProvider::class,
         ];
     }
-
 
 }

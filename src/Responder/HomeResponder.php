@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\Action;
+namespace App\Responder;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -9,11 +9,11 @@ use Venta\Contracts\Adr\Responder;
 use Venta\Contracts\Http\ResponseFactory;
 
 /**
- * Class HomeAction
+ * Class HomeResponder
  *
- * @package App\Controller
+ * @package App\Responder
  */
-class HomeActionResponder implements Responder
+class HomeResponder implements Responder
 {
     /**
      * @var ResponseFactory
