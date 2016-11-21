@@ -1,6 +1,7 @@
 {
     "name": "venta/venta",
-    "description": "Venta Framework",
+    "description": "The Venta PHP Framework",
+    "keywords": ["framework", "venta"],
     "type": "project",
     "authors": [
         {
@@ -24,8 +25,8 @@
         "phpunit/phpunit":"^5.4"
     },
     "scripts": {
-        "post-install-cmd": [
-            "php -r \"copy('.env.example', '.env');\""
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
     }
 }
