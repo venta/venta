@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Provider\AppServiceProvider;
+use App\Provider\RouteServiceProvider;
 use Venta\Framework\Kernel\AbstractKernel;
 use Venta\Framework\ServiceProvider\ConsoleServiceProvider;
 use Venta\Framework\ServiceProvider\EventServiceProvider;
@@ -38,7 +39,7 @@ class Kernel extends AbstractKernel
 
             // Application Providers
             AppServiceProvider::class,
+            RouteServiceProvider::class,
         ];
     }
-
 }
