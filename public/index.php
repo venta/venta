@@ -3,7 +3,6 @@
 use App\Kernel;
 use Psr\Http\Message\ServerRequestInterface;
 use Venta\Framework\Http\HttpApplication;
-use Venta\Http\Factory\RequestFactory;
 
 require __DIR__ . '/../bootstrap/autoloader.php';
 
@@ -11,6 +10,6 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 $app = new HttpApplication(new Kernel);
 
 /** @var ServerRequestInterface $request */
-$request = (new RequestFactory)->createServerRequestFromGlobals();
+$request = $app->getContainer()->get(ServerRequestInterface::class);
 
 $app->run($request);
