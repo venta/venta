@@ -2,10 +2,10 @@
 
 namespace App\Responder;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Venta\Adr\AbstractResponder;
 use Venta\Contracts\Adr\Payload;
+use Venta\Contracts\Http\Request;
+use Venta\Contracts\Http\Response;
 
 /**
  * Class HomeResponder
@@ -17,8 +17,8 @@ class HomeResponder extends AbstractResponder
     /**
      * @inheritDoc
      */
-    public function run(ServerRequestInterface $request, Payload $payload = null): ResponseInterface
+    public function run(Request $request, Payload $payload = null): Response
     {
-        return $this->response()->append('Hi there. I\'m Venta');
+        return $this->html('Hi there. I\'m Venta');
     }
 }
