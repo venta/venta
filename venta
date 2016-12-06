@@ -2,31 +2,12 @@
 <?php declare(strict_types = 1);
 
 use App\Kernel;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Venta\Console\ConsoleApplication;
 
-/*
-|--------------------------------------------------------------------------
-| Requiring auto loader
-|--------------------------------------------------------------------------
-|
-| Including auto loader
-*/
 require __DIR__ . '/bootstrap/autoloader.php';
 
-/*
-|--------------------------------------------------------------------------
-| Creating cli Application
-|--------------------------------------------------------------------------
-|
-| Initializes application and boots kernel
-*/
-$app = new ConsoleApplication(new Kernel());
+$app = new ConsoleApplication(new Kernel);
 
-/*
-|--------------------------------------------------------------------------
-| Running Application
-|--------------------------------------------------------------------------
-|
-| Application processes Input and passes results to Output
-*/
-$app->run();
+$app->run(new ArgvInput, new ConsoleOutput);
