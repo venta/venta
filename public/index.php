@@ -1,13 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
 use App\Kernel;
 use Psr\Http\Message\ServerRequestInterface;
 use Venta\Contracts\Http\ResponseEmitter;
-use Venta\Framework\Http\HttpApplication;
+use Venta\Http\HttpApplication;
 
 require __DIR__ . '/../bootstrap/autoloader.php';
 
-/** @var \Venta\Framework\Http\HttpApplication $app */
 $app = new HttpApplication(new Kernel);
 
 /** @var ServerRequestInterface $request */
