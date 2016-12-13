@@ -19,10 +19,11 @@ class HomeResponder extends AbstractResponder
      */
     public function run(Request $request, Payload $payload = null): Response
     {
-        $username = $request->getRoute()->getVariables()['username'] ?? '';
+        $username = $request->route()->variables()['username'] ?? '';
         if ($username) {
             return $this->html("Hi there, $username. I'm Venta");
         }
+
         return $this->html('Hi there. I\'m Venta');
     }
 }

@@ -20,7 +20,7 @@ class Kernel extends AbstractKernel
     /**
      * @inheritDoc
      */
-    public function getRootPath(): string
+    public function rootPath(): string
     {
         return realpath(__DIR__ . '/../');
     }
