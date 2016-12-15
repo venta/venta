@@ -2,10 +2,10 @@
 
 namespace App\Responder;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Venta\Adr\AbstractResponder;
 use Venta\Contracts\Adr\Payload;
-use Venta\Contracts\Http\Request;
-use Venta\Contracts\Http\Response;
 
 /**
  * Class HomeResponder
@@ -17,9 +17,9 @@ class HomeResponder extends AbstractResponder
     /**
      * @inheritDoc
      */
-    public function run(Request $request, Payload $payload = null): Response
+    public function run(ServerRequestInterface $request, Payload $payload = null): ResponseInterface
     {
-        $username = $request->route()->variables()['username'] ?? '';
+        $username = $request->getAttribute('route')->variables()['username'] ?? '';
         if ($username) {
             return $this->html("Hi there, $username. I'm Venta");
         }
