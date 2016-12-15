@@ -20,7 +20,7 @@ class RouteServiceProvider extends AbstractServiceProvider
     public function boot()
     {
         /** @var RouteCollection $routes */
-        $routes = $this->container->get(RouteCollection::class);
+        $routes = $this->container()->get(RouteCollection::class);
         $routes->addRoute(Route::get('/{?username:[a-zA-Z0-9]+}', HomeResponder::class));
     }
 }

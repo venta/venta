@@ -10,7 +10,7 @@ require __DIR__ . '/../bootstrap/autoloader.php';
 $app = new HttpApplication(new Kernel);
 
 /** @var ServerRequestInterface $request */
-$request = $app->getContainer()->get(ServerRequestInterface::class);
+$request = $app->container()->get(ServerRequestInterface::class);
 
 $response = $app->run($request);
-$app->getContainer()->get(ResponseEmitter::class)->emit($response);
+$app->container()->get(ResponseEmitter::class)->emit($response);
