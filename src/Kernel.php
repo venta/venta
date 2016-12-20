@@ -8,6 +8,7 @@ use Venta\Framework\Kernel\AbstractKernel;
 use Venta\Framework\ServiceProvider\CacheServiceProvider;
 use Venta\Framework\ServiceProvider\ConsoleServiceProvider;
 use Venta\Framework\ServiceProvider\EventServiceProvider;
+use Venta\Framework\ServiceProvider\FilesystemServiceProvider;
 use Venta\Framework\ServiceProvider\HttpServiceProvider;
 use Venta\Framework\ServiceProvider\RoutingServiceProvider;
 
@@ -37,6 +38,7 @@ class Kernel extends AbstractKernel
             RoutingServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
+            FilesystemServiceProvider::class,
             CacheServiceProvider::class,
 
             // Application Providers
