@@ -3,7 +3,6 @@
 namespace App\Provider;
 
 use App\Responder\HomeResponder;
-use Venta\Contracts\Routing\RouteCollection;
 use Venta\Routing\Route;
 use Venta\ServiceProvider\AbstractServiceProvider;
 
@@ -19,8 +18,6 @@ class RouteServiceProvider extends AbstractServiceProvider
      */
     public function boot()
     {
-        /** @var RouteCollection $routes */
-        $routes = $this->container()->get(RouteCollection::class);
-        $routes->addRoute(Route::get('/{?username:[a-zA-Z0-9]+}', HomeResponder::class));
+        $this->routes()->addRoute(Route::get('/{?username:[a-zA-Z0-9]+}', HomeResponder::class));
     }
 }
