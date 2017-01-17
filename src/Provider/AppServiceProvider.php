@@ -2,6 +2,7 @@
 
 namespace App\Provider;
 
+use Venta\Contracts\Container\MutableContainer;
 use Venta\ServiceProvider\AbstractServiceProvider;
 
 /**
@@ -14,7 +15,7 @@ class AppServiceProvider extends AbstractServiceProvider
     /**
      * @inheritdoc
      */
-    public function boot()
+    public function bind(MutableContainer $container)
     {
         // Add service container bindings here...
     }

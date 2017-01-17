@@ -3,6 +3,7 @@
 namespace App\Provider;
 
 use App\Responder\HomeResponder;
+use Venta\Contracts\Container\MutableContainer;
 use Venta\Routing\Route;
 use Venta\ServiceProvider\AbstractServiceProvider;
 
@@ -13,6 +14,11 @@ use Venta\ServiceProvider\AbstractServiceProvider;
  */
 class RouteServiceProvider extends AbstractServiceProvider
 {
+
+    public function bind(MutableContainer $container)
+    {
+    }
+
     /**
      * @inheritdoc
      */
